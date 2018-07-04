@@ -1,14 +1,17 @@
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { HttpModule } from '@angular/http';
+import { NgModule } from '@angular/core';
 import {
   RouterStateSerializer,
   StoreRouterConnectingModule
 } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
+import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import { CoreModule } from './core/core.module';
 import { FeaturesModule } from './features/features.module';
@@ -27,6 +30,13 @@ export const ROUTES: Routes = [
   { path: '**', redirectTo: 'welcome'}
 ];
 
+export function createApollo(httpLink: HttpLink): any {
+  return {
+    link: httpLink.create({uri: 'http://localhost:3000/graphql'}),
+    cache: new InMemoryCache()
+  };
+}
+
 @NgModule({
   declarations: [
   ],
@@ -41,6 +51,8 @@ export const ROUTES: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ApolloModule,
+    HttpLinkModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router'
@@ -53,7 +65,15 @@ export const ROUTES: Routes = [
     AuthModule.forRoot()
   ],
   providers: [
-    { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer }
+    {
+      provide: RouterStateSerializer,
+      useClass: CustomRouterStateSerializer
+    },
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: createApollo,
+      deps: [HttpLink]
+    }
   ],
   bootstrap: [CoreComponent]
 })

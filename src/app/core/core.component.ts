@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { select, Store } from '@ngrx/store';
 import * as fromRoot from '../app.reducer';
 import * as ConfigActions from './endpoint-configuration/endpoint-configuration.actions';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +13,19 @@ import * as ConfigActions from './endpoint-configuration/endpoint-configuration.
 })
 export class CoreComponent {
 
-  constructor(private store: Store<fromRoot.State>) {
+  constructor(private store: Store<fromRoot.State>, apollo: Apollo) {
     this.store.dispatch(new ConfigActions.LoadEndpointConfig());
+    apollo
+      .query({
+        query: gql`
+        query {
+          todo(id: 1) {
+              content
+          }
+        }
+        `
+      })
+      .subscribe(console.log);
   }
 
 }

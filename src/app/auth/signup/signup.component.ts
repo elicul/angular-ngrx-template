@@ -15,7 +15,7 @@ import * as fromCore from '../../core/core.reducer';
   styleUrls: ['./signup.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SignupComponent implements OnInit, OnDestroy {
+export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   isLoading$: Observable<boolean>;
   user: User;

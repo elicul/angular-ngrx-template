@@ -18,7 +18,7 @@ import { User } from '../user.model';
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isLoading$: Observable<boolean>;
   user: User;
