@@ -1,0 +1,13 @@
+export interface EndpointConfiguration {
+  GATEWAY_API_URL: string;
+  CONFIGURATION_GET_PATH: string;
+  USER_LOGIN_PATH: string;
+  USER_AUTOLOGIN_PATH: string;
+  USER_REGISTER_PATH: string;
+  USER_EMAIL_CONFIRMED_PATH: string;
+  USER_EMAIL_CONFIRM_PATH: string;
+  USER_RESEND_EMAIL_CONFIRM_PATH: string;
+  USER_FORGOT_PASSWORD_PATH: string;
+  USER_RESET_PASSWORD_PATH: string;
+  USER_CHANGE_PASSWORD_PATH: string;
+}

@@ -1,0 +1,36 @@
+.docs-footer {
+  padding: 12px;
+  font-size: 12px;
+  background: #3f51b5;
+  color: #fff;
+}
+
+.docs-footer-list {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 8px;
+}
+
+.docs-footer-logo {
+  flex: 1;
+  display: block;
+}
+
+.docs-footer-version {
+  flex: 1;
+  text-align: center;
+}
+
+.docs-footer-copyright {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  flex-direction: column;
+  min-width: 225px;
+  text-align: center;
+}
+
+a, a:hover, a:active, a:visited {
+  color: white;
+}
