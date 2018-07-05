@@ -1,17 +1,21 @@
-const express = require('express')
-const expressGraphQL = require('express-graphql')
-const cors = require('cors');
-const schema = require('./graphql/schema/Schema')
+const express = require("express");
+const mongoose = require('./config/mongoose');
+const graphqlHTTP = require("express-graphql");
+const cors = require("cors");
 
+const db = mongoose();
 const app = express();
 
-app.use(cors());
+app.use('*', cors());
 
-app.get('/', (req, res) => res.send('Hello World!'))
-
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
-
-app.use('/graphql', expressGraphQL({
-  schema,
+const userSchema = require('./graphql/index').userSchema;
+app.use('/graphql', cors(), graphqlHTTP({
+  schema: userSchema,
+  rootValue: global,
   graphiql: true
-}))
+}));
+
+// Up and Running
+app.listen(process.env.PORT || 8090, () => {
+  console.log('A GraphQL API running at port 8090');
+});

@@ -18,11 +18,12 @@ export class CoreComponent {
     apollo
       .query({
         query: gql`
-        query {
-          todo(id: 1) {
-              content
+          query {
+            users {
+              id,
+              name
+            }
           }
-        }
         `
       })
       .subscribe(console.log);

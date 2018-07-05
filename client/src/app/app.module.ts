@@ -32,7 +32,7 @@ export const ROUTES: Routes = [
 
 export function createApollo(httpLink: HttpLink): any {
   return {
-    link: httpLink.create({uri: 'http://localhost:3000/graphql'}),
+    link: httpLink.create({uri: 'http://localhost:8090/graphql'}),
     cache: new InMemoryCache()
   };
 }
