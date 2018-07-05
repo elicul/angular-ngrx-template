@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { CoreComponent } from './core.component';
 import { EndpointConfigurationService } from './endpoint-configuration/endpoint-configuration.service';
-import { environment } from '../../environments/environment';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './utils/token.interceptor';
 import { HttpModule } from '@angular/http';
@@ -28,10 +27,6 @@ export const COMPONENTS = [
   SitenavComponent,
   FooterComponent
 ];
-
-export function configServiceFactory(configService: EndpointConfigurationService): any {
-  return () => configService.loadEndpointConfiguration(environment.endpointConfigFile);
-}
 
 @NgModule({
   declarations: COMPONENTS,
