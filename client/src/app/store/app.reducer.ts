@@ -5,11 +5,11 @@ import {
   createSelector,
   MetaReducer
 } from '@ngrx/store';
-import { environment } from '../environments/environment';
-import { RouterStateUrl } from './core/router-state/router-state-url.model';
+import { environment } from '../../environments/environment';
+import { RouterStateUrl } from '../models/router-state-url.model';
 import * as fromRouter from '@ngrx/router-store';
 import * as fromAuth from './auth/auth.reducer';
-import * as fromUi from './shared/ui/ui.reducer';
+import * as fromUi from './ui/ui.reducer';
 // tslint:disable-next-line:no-implicit-dependencies
 import { storeFreeze } from 'ngrx-store-freeze';
 

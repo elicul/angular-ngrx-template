@@ -3,11 +3,13 @@
 
     <mat-form-field>
       <input type="text" matInput placeholder="First Name" formControlName="firstName">
+      <mat-hint>Please enter your first name.</mat-hint>
       <mat-error>First name is required!.</mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <input type="text" matInput placeholder="Last Name" formControlName="lastName">
+      <mat-hint>Please enter your last name.</mat-hint>
       <mat-error>Last name is required!</mat-error>
     </mat-form-field>
 
@@ -29,7 +31,7 @@
       <mat-error>Missing confirmation password.</mat-error>
     </mat-form-field>
 
-    <button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="primary" [disabled]="signupForm.invalid">Submit</button>
+    <button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="primary" [disabled]="signupForm.invalid" style="margin-top: 3rem;">Submit</button>
     <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
   </form>
 </section>

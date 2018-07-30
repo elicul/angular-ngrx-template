@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import * as fromRoot from '../../../app.reducer';
-import * as AuthActions from '../../../auth/auth.actions';
+import * as fromRoot from '../../../store/app.reducer';
+import * as AuthActions from '../../../store/auth/auth.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sitenav',
@@ -14,7 +15,7 @@ export class SitenavComponent implements OnInit {
   @Output() closeSidenav = new EventEmitter<void>();
   isAuth$: Observable<boolean>;
 
-  constructor(private store: Store<fromRoot.State>) { }
+  constructor(private store: Store<fromRoot.State>, private router: Router) { }
 
   ngOnInit(): void {
     this.isAuth$ = this.store.select(fromRoot.getIsAuth);

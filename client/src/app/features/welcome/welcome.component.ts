@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import * as fromRoot from '../../app.reducer';
-import * as AuthActions from '../../auth/auth.actions';
+import * as fromRoot from '../../store/app.reducer';
+import * as AuthActions from '../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-welcome',

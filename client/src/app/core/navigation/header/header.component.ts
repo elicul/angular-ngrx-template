@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import * as fromRoot from '../../../app.reducer';
-import * as AuthActions from '../../../auth/auth.actions';
+import * as fromRoot from '../../../store/app.reducer';
+import * as AuthActions from '../../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-header',

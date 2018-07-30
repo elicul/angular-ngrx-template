@@ -1,5 +1,5 @@
 import { EndpointConfigurationActionsUnion, EndpointConfigurationActionTypes } from './endpoint-configuration.actions';
-import { EndpointConfiguration } from './endpoint-configuration.model';
+import { EndpointConfiguration } from '../../../models/endpoint-configuration.model';
 
 export interface State {
   errorMessage: string | null;

@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { EndpointConfiguration } from './endpoint-configuration.model';
+import { EndpointConfiguration } from '../../../models/endpoint-configuration.model';
 
 export enum EndpointConfigurationActionTypes {
   LOAD_ENDPOINT_CONFIGURATION = '[Configuration] Load Endpoint',

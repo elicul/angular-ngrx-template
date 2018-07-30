@@ -6,10 +6,17 @@
     <span class="nav-caption padding-left">Login</span>
   </a>
 
-  <mat-list-item>
-    <button mat-icon-button (click)="onLogout()" (click)="onClose()" *ngIf="isAuth$ | async">
+  <mat-list-item (click)="router.navigateByUrl('/');onClose()" *ngIf="isAuth$ | async">
+    <button mat-icon-button>
+      <mat-icon color="primary">home</mat-icon>
+      <span class="nav-caption padding-left">Home</span>
+    </button>
+  </mat-list-item>
+  <mat-list-item (click)="onLogout();onClose()" *ngIf="isAuth$ | async">
+    <button mat-icon-button>
       <mat-icon color="primary">eject</mat-icon>
       <span class="nav-caption padding-left">Logout</span>
     </button>
   </mat-list-item>
+
 </mat-nav-list>

@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Action, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { UIService } from '../shared/ui/ui.service';
-import * as UI from '../shared/ui/ui.actions';
+import { UIService } from '../../shared/ui/ui.service';
+import * as UI from '../ui/ui.actions';
 import * as fromRoot from '../app.reducer';
 
-import { AuthService } from './auth.service';
+import { AuthService } from '../../auth/auth.service';
 import {
   AuthActionTypes,
   LogIn, LogInFailure, LogInSuccess,
-  LogOut, SignUp, SignUpFailure,
+  SignUp, SignUpFailure,
   SignUpSuccess
 } from './auth.actions';
-import { CacheHandlerService } from '../core/utils/cache-handler.service';
+import { CacheHandlerService } from '../../core/services/cache-handler.service';
 
 @Injectable()
 export class AuthEffects {

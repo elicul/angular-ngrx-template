@@ -1,6 +1,6 @@
-import { User } from './user.model';
+import { User } from '../../models/user.model';
 import { AuthActionsUnion, AuthActionTypes } from './auth.actions';
-import { CacheHandlerService } from '../core/utils/cache-handler.service';
+import { CacheHandlerService } from '../../core/services/cache-handler.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 const localCache = new CacheHandlerService();

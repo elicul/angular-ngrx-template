@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from './user.model';
-import { select, Store } from '@ngrx/store';
-import * as fromRoot from '../app.reducer';
-import * as fromCore from '../core/core.reducer';
-import { EndpointConfiguration } from '../core/endpoint-configuration/endpoint-configuration.model';
+import { User } from '../models/user.model';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../store/app.reducer';
+import * as fromCore from '../store/core/core.reducer';
+import { EndpointConfiguration } from '../models/endpoint-configuration.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { CacheHandlerService } from '../core/utils/cache-handler.service';
+import { CacheHandlerService } from '../core/services/cache-handler.service';
 
 @Injectable()
 export class AuthService {

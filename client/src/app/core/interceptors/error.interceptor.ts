@@ -3,7 +3,7 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { CacheHandlerService } from './cache-handler.service';
+import { CacheHandlerService } from '../services/cache-handler.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

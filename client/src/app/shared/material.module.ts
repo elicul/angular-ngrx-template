@@ -5,6 +5,7 @@ import {
   MatCheckboxModule,
   MatDatepickerModule,
   MatDialogModule,
+  MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -28,6 +29,7 @@ import {
   imports: [
     MatButtonModule,
     MatIconModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
@@ -52,6 +54,7 @@ import {
   exports: [
     MatButtonModule,
     MatIconModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,

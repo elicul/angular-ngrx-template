@@ -1,6 +1,7 @@
 export interface EndpointConfiguration {
   GATEWAY_API_URL: string;
   CONFIGURATION_GET_PATH: string;
+
   USER_LOGIN_PATH: string;
   USER_AUTOLOGIN_PATH: string;
   USER_REGISTER_PATH: string;

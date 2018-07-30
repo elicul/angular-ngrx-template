@@ -8,10 +8,10 @@ import {
   LoadEndpointConfigFailure,
   LoadEndpointConfigSuccess
 } from './endpoint-configuration.actions';
-import { EndpointConfigurationService } from './endpoint-configuration.service';
-import { environment } from '../../../environments/environment';
-import { UIService } from '../../shared/ui/ui.service';
-import * as UI from '../../shared/ui/ui.actions';
+import { EndpointConfigurationService } from '../../../core/services/endpoint-configuration.service';
+import { environment } from '../../../../environments/environment';
+import { UIService } from '../../../shared/ui/ui.service';
+import * as UI from '../../ui/ui.actions';
 import * as fromRoot from '../../app.reducer';
 import { Store } from '@ngrx/store';
 

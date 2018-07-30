@@ -3,23 +3,22 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { CoreComponent } from './core.component';
-import { EndpointConfigurationService } from './endpoint-configuration/endpoint-configuration.service';
+import { EndpointConfigurationService } from './services/endpoint-configuration.service';
+import { environment } from '../../environments/environment';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from './utils/token.interceptor';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '../shared/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { reducers } from './core.reducer';
-import { EndpointConfigurationEffects } from './endpoint-configuration/endpoint-configuration.effects';
-import { CacheHandlerService } from './utils/cache-handler.service';
-import { ErrorInterceptor } from './utils/error.interceptor';
+import { CacheHandlerService } from './services/cache-handler.service';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { UIService } from '../shared/ui/ui.service';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SitenavComponent } from './navigation/sitenav/sitenav.component';
 import { FooterComponent } from './navigation/footer/footer.component';
+import { GlobalConfigurationService } from './services/global-configuration.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { GlobalConfigurationGuard } from './guards/global-configuration.guard';
 
 export const COMPONENTS = [
   CoreComponent,
@@ -27,6 +26,10 @@ export const COMPONENTS = [
   SitenavComponent,
   FooterComponent
 ];
+
+export function configServiceFactory(configService: EndpointConfigurationService): any {
+  return () => configService.loadEndpointConfiguration(environment.endpointConfigFile);
+}
 
 @NgModule({
   declarations: COMPONENTS,
@@ -36,9 +39,7 @@ export const COMPONENTS = [
     HttpModule,
     MaterialModule,
     FlexLayoutModule,
-    SimpleNotificationsModule.forRoot(),
-    StoreModule.forFeature('configuration', reducers.configuration),
-    EffectsModule.forFeature([EndpointConfigurationEffects])
+    SimpleNotificationsModule.forRoot()
   ],
   exports: COMPONENTS
 })
@@ -49,6 +50,8 @@ export class CoreModule {
       providers: [
         EndpointConfigurationService,
         CacheHandlerService,
+        GlobalConfigurationService,
+        GlobalConfigurationGuard,
         UIService,
         {
           provide: HTTP_INTERCEPTORS,

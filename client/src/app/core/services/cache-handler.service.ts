@@ -16,4 +16,16 @@ export class CacheHandlerService {
   }
   //#endregion
 
+  //#region Template
+  getTemplate(): string {
+    return window.localStorage.getItem('Template');
+  }
+  setTemplate(template: string): void {
+    if (template != null && template !== '')
+      window.localStorage.setItem('Template', template);
+  }
+  removeTemplate(): void {
+    return window.localStorage.removeItem('Template');
+  }
+  //#endregion
 }
