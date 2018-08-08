@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './auth/auth.module';
 import { CustomRouterStateSerializer } from './core/router-state/router-state-serializer';
 import { RootStoreModule } from './store/root-store.module';
+import { environment } from '../environments/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 export const ROUTES: Routes = [
   { path: '', loadChildren: './features/features.module#FeaturesModule'},
@@ -35,7 +37,8 @@ export const ROUTES: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     RootStoreModule,
-    AuthModule.forRoot()
+    AuthModule.forRoot(),
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer }
