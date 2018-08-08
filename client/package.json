@@ -1,6 +1,7 @@
 {
   "name": "angular-template",
   "version": "0.0.0",
+  "author": "Enzo Licul",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 8080 -o",
