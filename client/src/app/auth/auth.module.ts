@@ -17,8 +17,16 @@ import { CacheHandlerService } from '../core/services/cache-handler.service';
 export const COMPONENTS = [LoginComponent, SignupComponent];
 
 export const ROUTES: Routes = [
-  { path: 'login', component: LoginComponent, canActivate: [GlobalConfigurationGuard] },
-  { path: 'signup', component: SignupComponent, canActivate: [GlobalConfigurationGuard] }
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [GlobalConfigurationGuard]
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
+    canActivate: [GlobalConfigurationGuard]
+  }
 ];
 
 @NgModule({
@@ -26,7 +34,6 @@ export const ROUTES: Routes = [
   declarations: COMPONENTS,
   exports: COMPONENTS
 })
-
 export class AuthModule {
   static forRoot(): ModuleWithProviders {
     return {

@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as fromRoot from '../../store/app.reducer';
 import { Observable } from 'rxjs';
@@ -15,7 +20,6 @@ import * as fromCore from '../../store/core/core.reducer';
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   isLoading$: Observable<boolean>;
@@ -24,13 +28,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   user: User;
   sub: any;
 
-  constructor(
-    private store: Store<fromRoot.State>
-  ) {
-    this.globalConfiguration$ = this.store.select(fromCore.getGlobalConfiguration);
+  constructor(private store: Store<fromRoot.State>) {
+    this.globalConfiguration$ = this.store.select(
+      fromCore.getGlobalConfiguration
+    );
     this.sub = this.globalConfiguration$.subscribe(response => {
-      if (response)
-        this.globalConfiguration = response;
+      if (response) this.globalConfiguration = response;
     });
   }
 
@@ -52,7 +55,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       Password: this.loginForm.value.password,
       CompanyId: this.globalConfiguration.CompanyId,
       ClientConfigurationId: this.globalConfiguration.Id,
-      SecurityClientSettingId: this.globalConfiguration.SecurityClientConfigurationId,
+      SecurityClientSettingId: this.globalConfiguration
+        .SecurityClientConfigurationId,
       ClientId: this.globalConfiguration.ClientID,
       ClientSecret: this.globalConfiguration.ClientSecrets,
       ClientScope: this.globalConfiguration.ClientAllowedScopes
@@ -64,5 +68,4 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
-
 }

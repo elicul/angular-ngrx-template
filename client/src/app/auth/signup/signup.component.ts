@@ -1,5 +1,10 @@
 import * as auth from '../../store/auth/auth.actions';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../store/app.reducer';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
@@ -24,28 +29,31 @@ export class SignupComponent implements OnInit, OnDestroy {
   globalConfiguration: GlobalConfiguration;
   sub: any;
 
-  constructor(
-    private store: Store<fromRoot.State>
-  ) {
-    this.globalConfiguration$ = this.store.select(fromCore.getGlobalConfiguration);
+  constructor(private store: Store<fromRoot.State>) {
+    this.globalConfiguration$ = this.store.select(
+      fromCore.getGlobalConfiguration
+    );
     this.sub = this.globalConfiguration$.subscribe(response => {
-      if (response)
-        this.globalConfiguration = response;
+      if (response) this.globalConfiguration = response;
     });
   }
 
   ngOnInit(): void {
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
-    this.signupForm = new FormGroup({
-      firstName: new FormControl('', { validators: [Validators.required] }),
-      lastName: new FormControl('', { validators: [Validators.required] }),
-      email: new FormControl('', {
-        validators: [Validators.required, Validators.email]
-      }),
-      password: new FormControl('', { validators: [Validators.required] }),
-      confirmPassword: new FormControl('', { validators: [Validators.required]})
-    }, PasswordValidation.MatchPassword);
-
+    this.signupForm = new FormGroup(
+      {
+        firstName: new FormControl('', { validators: [Validators.required] }),
+        lastName: new FormControl('', { validators: [Validators.required] }),
+        email: new FormControl('', {
+          validators: [Validators.required, Validators.email]
+        }),
+        password: new FormControl('', { validators: [Validators.required] }),
+        confirmPassword: new FormControl('', {
+          validators: [Validators.required]
+        })
+      },
+      PasswordValidation.MatchPassword
+    );
   }
 
   onSubmit(): void {
@@ -58,7 +66,8 @@ export class SignupComponent implements OnInit, OnDestroy {
       Password: this.signupForm.value.password,
       CompanyId: this.globalConfiguration.CompanyId,
       ClientConfigurationId: this.globalConfiguration.Id,
-      SecurityClientSettingId: this.globalConfiguration.SecurityClientConfigurationId,
+      SecurityClientSettingId: this.globalConfiguration
+        .SecurityClientConfigurationId,
       ReturnUrl: this.globalConfiguration.ApplicationClientURL,
       QueryParams: '',
       ClientId: this.globalConfiguration.ClientID,
@@ -72,5 +81,4 @@ export class SignupComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
-
 }

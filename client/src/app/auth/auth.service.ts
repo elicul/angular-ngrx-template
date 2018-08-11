@@ -11,28 +11,35 @@ import { CacheHandlerService } from '../core/services/cache-handler.service';
 
 @Injectable()
 export class AuthService {
-
   private endpointConfiguration$: Observable<EndpointConfiguration>;
   private endpointConfiguration: EndpointConfiguration;
   private jwtHelper = new JwtHelperService();
 
-  constructor(private http: HttpClient, private store: Store<fromRoot.State>,
-              private cacheHandler: CacheHandlerService) {
-    this.endpointConfiguration$ = this.store.select(fromCore.getEndpointConfiguration);
+  constructor(
+    private http: HttpClient,
+    private store: Store<fromRoot.State>,
+    private cacheHandler: CacheHandlerService
+  ) {
+    this.endpointConfiguration$ = this.store.select(
+      fromCore.getEndpointConfiguration
+    );
     this.endpointConfiguration$.subscribe((response: EndpointConfiguration) => {
-      if (response)
-        this.endpointConfiguration = response;
+      if (response) this.endpointConfiguration = response;
     });
   }
 
   logIn(user: User): Observable<any> {
-    const url = this.endpointConfiguration.GATEWAY_API_URL + this.endpointConfiguration.USER_LOGIN_PATH;
+    const url =
+      this.endpointConfiguration.GATEWAY_API_URL +
+      this.endpointConfiguration.USER_LOGIN_PATH;
 
     return this.http.post<User>(url, user);
   }
 
   signUp(user: User): Observable<User> {
-    const url = this.endpointConfiguration.GATEWAY_API_URL + this.endpointConfiguration.USER_REGISTER_PATH;
+    const url =
+      this.endpointConfiguration.GATEWAY_API_URL +
+      this.endpointConfiguration.USER_REGISTER_PATH;
 
     return this.http.post<User>(url, user);
   }
@@ -41,11 +48,9 @@ export class AuthService {
     const token = this.cacheHandler.getUserToken();
     if (token !== undefined) {
       const isExpired = this.jwtHelper.isTokenExpired(token);
-      if (isExpired)
-        return undefined;
+      if (isExpired) return undefined;
 
       return token;
-    } else
-      return undefined;
+    } else return undefined;
   }
 }
