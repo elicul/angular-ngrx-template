@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as fromRoot from '../store/app.reducer';
 import * as ConfigActions from '../store/core/endpoint-configuration/endpoint-configuration.actions';
