@@ -19,18 +19,18 @@ import * as fromCore from '../../store/core/core.reducer';
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   isLoading$: Observable<boolean>;
-  globalConstants$: Observable<GlobalConfiguration>;
-  globalConstants: GlobalConfiguration;
+  globalConfiguration$: Observable<GlobalConfiguration>;
+  globalConfiguration: GlobalConfiguration;
   user: User;
   sub: any;
 
   constructor(
     private store: Store<fromRoot.State>
   ) {
-    this.globalConstants$ = this.store.select(fromCore.getGlobalConstants);
-    this.sub = this.globalConstants$.subscribe(response => {
+    this.globalConfiguration$ = this.store.select(fromCore.getGlobalConfiguration);
+    this.sub = this.globalConfiguration$.subscribe(response => {
       if (response)
-        this.globalConstants = response;
+        this.globalConfiguration = response;
     });
   }
 
@@ -50,12 +50,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.user = {
       Email: this.loginForm.value.email,
       Password: this.loginForm.value.password,
-      CompanyId: this.globalConstants.CompanyId,
-      ClientConfigurationId: this.globalConstants.Id,
-      SecurityClientSettingId: this.globalConstants.SecurityClientConfigurationId,
-      ClientId: this.globalConstants.ClientID,
-      ClientSecret: this.globalConstants.ClientSecrets,
-      ClientScope: this.globalConstants.ClientAllowedScopes
+      CompanyId: this.globalConfiguration.CompanyId,
+      ClientConfigurationId: this.globalConfiguration.Id,
+      SecurityClientSettingId: this.globalConfiguration.SecurityClientConfigurationId,
+      ClientId: this.globalConfiguration.ClientID,
+      ClientSecret: this.globalConfiguration.ClientSecrets,
+      ClientScope: this.globalConfiguration.ClientAllowedScopes
     };
 
     this.store.dispatch(new auth.LogIn(this.user));

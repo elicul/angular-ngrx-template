@@ -9,8 +9,8 @@ import { GlobalConfigurationEffects } from './global-configuration/global-config
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature('configuration', reducers.configuration),
-    StoreModule.forFeature('globalConstants', reducers.globalConstants),
+    StoreModule.forFeature('endpointConfiguration', reducers.endpointConfiguration),
+    StoreModule.forFeature('globalConfiguration', reducers.globalConfiguration),
     EffectsModule.forFeature([EndpointConfigurationEffects, GlobalConfigurationEffects])
   ],
   providers: [EndpointConfigurationEffects, GlobalConfigurationEffects]

@@ -13,8 +13,8 @@ export class GlobalConfigurationGuard implements CanActivate {
 
   constructor(private store: Store<fromRoot.State>) {}
 
-  getGlobalConstants(): Observable<GlobalConfiguration> {
-    return this.store.select(fromCore.getGlobalConstants)
+  getGlobalConfiguration(): Observable<GlobalConfiguration> {
+    return this.store.select(fromCore.getGlobalConfiguration)
       .pipe(
         tap((data: any) => {
             if (data === undefined)
@@ -28,7 +28,7 @@ export class GlobalConfigurationGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    return this.getGlobalConstants()
+    return this.getGlobalConfiguration()
       .pipe(
         switchMap(() => of(true)),
         catchError(() => of(false))

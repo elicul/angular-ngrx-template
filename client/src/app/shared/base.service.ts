@@ -13,7 +13,7 @@ export abstract class BaseService {
   endpointConfiguration: EndpointConfiguration;
 
   constructor(private http: Http, private store: Store<fromRoot.State>) {
-    this.endpointConfiguration$ = this.store.select(fromCore.getConfiguration);
+    this.endpointConfiguration$ = this.store.select(fromCore.getEndpointConfiguration);
     this.endpointConfiguration$.subscribe(response => {
       if (response)
         this.endpointConfiguration = response;

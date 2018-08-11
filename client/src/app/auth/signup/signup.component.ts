@@ -20,17 +20,17 @@ export class SignupComponent implements OnInit, OnDestroy {
   signupForm: FormGroup;
   isLoading$: Observable<boolean>;
   user: User;
-  globalConstants$: Observable<GlobalConfiguration>;
-  globalConstants: GlobalConfiguration;
+  globalConfiguration$: Observable<GlobalConfiguration>;
+  globalConfiguration: GlobalConfiguration;
   sub: any;
 
   constructor(
     private store: Store<fromRoot.State>
   ) {
-    this.globalConstants$ = this.store.select(fromCore.getGlobalConstants);
-    this.sub = this.globalConstants$.subscribe(response => {
+    this.globalConfiguration$ = this.store.select(fromCore.getGlobalConfiguration);
+    this.sub = this.globalConfiguration$.subscribe(response => {
       if (response)
-        this.globalConstants = response;
+        this.globalConfiguration = response;
     });
   }
 
@@ -56,14 +56,14 @@ export class SignupComponent implements OnInit, OnDestroy {
       LastName: this.signupForm.value.lastName,
       Email: this.signupForm.value.email,
       Password: this.signupForm.value.password,
-      CompanyId: this.globalConstants.CompanyId,
-      ClientConfigurationId: this.globalConstants.Id,
-      SecurityClientSettingId: this.globalConstants.SecurityClientConfigurationId,
-      ReturnUrl: this.globalConstants.ApplicationClientURL,
+      CompanyId: this.globalConfiguration.CompanyId,
+      ClientConfigurationId: this.globalConfiguration.Id,
+      SecurityClientSettingId: this.globalConfiguration.SecurityClientConfigurationId,
+      ReturnUrl: this.globalConfiguration.ApplicationClientURL,
       QueryParams: '',
-      ClientId: this.globalConstants.ClientID,
-      ClientSecret: this.globalConstants.ClientSecrets,
-      ClientScope: this.globalConstants.ClientAllowedScopes
+      ClientId: this.globalConfiguration.ClientID,
+      ClientSecret: this.globalConfiguration.ClientSecrets,
+      ClientScope: this.globalConfiguration.ClientAllowedScopes
     };
 
     this.store.dispatch(new auth.SignUp(this.user));

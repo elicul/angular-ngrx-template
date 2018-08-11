@@ -18,7 +18,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private store: Store<fromRoot.State>,
               private cacheHandler: CacheHandlerService) {
-    this.endpointConfiguration$ = this.store.select(fromCore.getConfiguration);
+    this.endpointConfiguration$ = this.store.select(fromCore.getEndpointConfiguration);
     this.endpointConfiguration$.subscribe((response: EndpointConfiguration) => {
       if (response)
         this.endpointConfiguration = response;

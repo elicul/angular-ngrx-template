@@ -4,28 +4,27 @@ import {
     createSelector
   } from '@ngrx/store';
 import * as fromRoot from '../app.reducer';
-import * as fromConfig from './endpoint-configuration/endpoint-configuration.reducer';
+import * as fromEndpointConfig from './endpoint-configuration/endpoint-configuration.reducer';
 import * as fromGlobalConfig from './global-configuration/global-configuration.reducer';
 
-export interface Configuration {
-  configuration: fromConfig.State;
-  globalConstants: fromGlobalConfig.State;
+export interface Core {
+  endpointConfiguration: fromEndpointConfig.State;
+  globalConfiguration: fromGlobalConfig.State;
 }
 
 export interface State extends fromRoot.State {
-  configuration: Configuration;
+  core: Core;
 }
 
-export const reducers: ActionReducerMap<Configuration> = {
-  configuration: fromConfig.reducer,
-  globalConstants: fromGlobalConfig.reducer
+export const reducers: ActionReducerMap<Core> = {
+  endpointConfiguration: fromEndpointConfig.reducer,
+  globalConfiguration: fromGlobalConfig.reducer
 };
 
-export const getConfigurationState = createFeatureSelector<fromConfig.State>('configuration');
+export const getEndpointConfigurationState = createFeatureSelector<fromEndpointConfig.State>('endpointConfiguration');
+export const getEndpointConfiguration = createSelector(getEndpointConfigurationState, fromEndpointConfig.getEndpointConfiguration);
+export const getEndpointConfigurationErrorMessage = createSelector(getEndpointConfigurationState, fromEndpointConfig.getErrorMessage);
 
-export const getConfiguration = createSelector(getConfigurationState, fromConfig.getEndpointConfiguration);
-export const getConfigurationErrorMessage = createSelector(getConfigurationState, fromConfig.getErrorMessage);
-
-export const getGlobalConfigurationState = createFeatureSelector<fromGlobalConfig.State>('globalConstants');
-export const getGlobalConstants = createSelector(getGlobalConfigurationState, fromGlobalConfig.getGlobalConfiguration);
-export const getGlobalErrorMessage = createSelector(getGlobalConfigurationState, fromGlobalConfig.getErrorMessage);
+export const getGlobalConfigurationState = createFeatureSelector<fromGlobalConfig.State>('globalConfiguration');
+export const getGlobalConfiguration = createSelector(getGlobalConfigurationState, fromGlobalConfig.getGlobalConfiguration);
+export const getGlobalConfigurationErrorMessage = createSelector(getGlobalConfigurationState, fromGlobalConfig.getErrorMessage);
