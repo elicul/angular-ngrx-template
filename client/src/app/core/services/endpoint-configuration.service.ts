@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http } from '@angular/http';
 import { EndpointConfiguration } from '../../models/endpoint-configuration.model';
 import { Observable } from 'rxjs';
-import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class EndpointConfigurationService {

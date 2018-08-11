@@ -8,8 +8,9 @@ export class CacheHandlerService {
     return window.localStorage.getItem('UserToken');
   }
   setUserToken(userToken: string): void {
-    if (userToken != null && userToken !== '')
-      window.localStorage.setItem('UserToken', userToken);
+    if (userToken)
+      if (userToken !== '')
+        window.localStorage.setItem('UserToken', userToken);
   }
   removeUserToken(): void {
     return window.localStorage.removeItem('UserToken');
@@ -21,8 +22,9 @@ export class CacheHandlerService {
     return window.localStorage.getItem('Template');
   }
   setTemplate(template: string): void {
-    if (template != null && template !== '')
-      window.localStorage.setItem('Template', template);
+    if (template)
+      if (template !== '')
+        window.localStorage.setItem('Template', template);
   }
   removeTemplate(): void {
     return window.localStorage.removeItem('Template');

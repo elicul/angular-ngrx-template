@@ -5,11 +5,9 @@ import {
   } from '@ngrx/store';
 import * as fromRoot from '../app.reducer';
 import * as fromEndpointConfig from './endpoint-configuration/endpoint-configuration.reducer';
-import * as fromGlobalConfig from './global-configuration/global-configuration.reducer';
 
 export interface Core {
   endpointConfiguration: fromEndpointConfig.State;
-  globalConfiguration: fromGlobalConfig.State;
 }
 
 export interface State extends fromRoot.State {
@@ -17,14 +15,9 @@ export interface State extends fromRoot.State {
 }
 
 export const reducers: ActionReducerMap<Core> = {
-  endpointConfiguration: fromEndpointConfig.reducer,
-  globalConfiguration: fromGlobalConfig.reducer
+  endpointConfiguration: fromEndpointConfig.reducer
 };
 
 export const getEndpointConfigurationState = createFeatureSelector<fromEndpointConfig.State>('endpointConfiguration');
 export const getEndpointConfiguration = createSelector(getEndpointConfigurationState, fromEndpointConfig.getEndpointConfiguration);
 export const getEndpointConfigurationErrorMessage = createSelector(getEndpointConfigurationState, fromEndpointConfig.getErrorMessage);
-
-export const getGlobalConfigurationState = createFeatureSelector<fromGlobalConfig.State>('globalConfiguration');
-export const getGlobalConfiguration = createSelector(getGlobalConfigurationState, fromGlobalConfig.getGlobalConfiguration);
-export const getGlobalConfigurationErrorMessage = createSelector(getGlobalConfigurationState, fromGlobalConfig.getErrorMessage);

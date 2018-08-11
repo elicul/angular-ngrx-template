@@ -15,9 +15,7 @@ import { UIService } from '../shared/ui/ui.service';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SitenavComponent } from './navigation/sitenav/sitenav.component';
 import { FooterComponent } from './navigation/footer/footer.component';
-import { GlobalConfigurationService } from './services/global-configuration.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { GlobalConfigurationGuard } from './guards/global-configuration.guard';
 
 export const COMPONENTS = [
   CoreComponent,
@@ -45,8 +43,6 @@ export class CoreModule {
       providers: [
         EndpointConfigurationService,
         CacheHandlerService,
-        GlobalConfigurationService,
-        GlobalConfigurationGuard,
         UIService,
         {
           provide: HTTP_INTERCEPTORS,
