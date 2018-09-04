@@ -20,6 +20,7 @@
     "@nestjs/common": "^5.0.0",
     "@nestjs/core": "^5.0.0",
     "@nestjs/passport": "^1.1.0",
+    "@nestjs/swagger": "^2.5.1",
     "@nestjs/typeorm": "^5.1.0",
     "fastify-formbody": "^2.0.0",
     "jsonwebtoken": "^8.3.0",

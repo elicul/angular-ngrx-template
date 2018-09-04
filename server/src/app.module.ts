@@ -5,8 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    AuthModule,
     TypeOrmModule.forRoot(),
+    AuthModule,
     PhotoModule,
   ],
 })
