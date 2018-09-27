@@ -30,8 +30,8 @@ export class SignupComponent implements OnInit {
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
     this.signupForm = new FormGroup(
       {
-        firstName: new FormControl('', { validators: [Validators.required] }),
-        lastName: new FormControl('', { validators: [Validators.required] }),
+        firstName: new FormControl('', { validators: [Validators.required, Validators.pattern('[a-zA-Z]*')] }),
+        lastName: new FormControl('', { validators: [Validators.required, Validators.pattern('[a-zA-Z]*')] }),
         email: new FormControl('', {
           validators: [Validators.required, Validators.email]
         }),
