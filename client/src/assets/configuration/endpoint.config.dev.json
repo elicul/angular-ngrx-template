@@ -1,8 +1,6 @@
 {
   "GATEWAY_API_URL": "http://eberecruitinggateway.ebe-inc.test/",
 
-  "CONFIGURATION_GET_PATH" : "configuration/getconfig?HostName={HostName}",
-
   "USER_LOGIN_PATH" : "user/login",
   "USER_AUTOLOGIN_PATH" : "user/login-confirmed",
   "USER_REGISTER_PATH" : "user/register/",
